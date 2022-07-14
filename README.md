@@ -10,9 +10,6 @@
 Update your `firebase.js`  file to look like this:
 
 ```jsx
-import firebase from "@firebase/app";
-import "@firebase/auth";
-import "@firebase/firestore";
 
 // Your web app's Firebase configuration, which you copy-pasted from Step 6
 const firebaseConfig = {
@@ -24,12 +21,7 @@ const firebaseConfig = {
   appId: "1:239440555368:web:d7d431a3733e778d273add",
   measurementId: "G-W4Y70B8JL2",
 };
-// Initialize Firebase
 
-firebase.initializeApp(firebaseConfig);
-let firestore = firebase.firestore();
-
-export default firestore;
   ```
 
 </details>
