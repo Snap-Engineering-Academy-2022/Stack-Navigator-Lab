@@ -4,28 +4,6 @@
 
 ## 0. Before we start, update your code.
 
-<details>
-<summary> We're switching to a class-wide account for Firebase. Make sure you change your config in your firebase.js file.</summary>
-
-Update your `firebase.js`  file to look like this:
-
-```jsx
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyC7CQwBSzjC_tlEiMd2Mc8Sh9Fb_Cwc1p8",
-  authDomain: "chapsnat-3f4f7.firebaseapp.com",
-  projectId: "chapsnat-3f4f7",
-  storageBucket: "chapsnat-3f4f7.appspot.com",
-  messagingSenderId: "239440555368",
-  appId: "1:239440555368:web:d7d431a3733e778d273add",
-  measurementId: "G-W4Y70B8JL2",
-};
-
-  ```
-
-</details>
-
 <details>  
 <summary> Completed App.js file, if you finished the Firebase lab from yesterday.</summary>
     
