@@ -1,6 +1,6 @@
 # Stack Navigator Lab
 
-💡 So just as a recap, we talked through [drawer navigators](https://github.com/Snap-Engineering-Academy-2022/chapsnat_2022/tree/main#1-explore-drawer-navigators) and [tab navigators](https://github.com/Snap-Engineering-Academy-2022/chapsnat_2022/tree/main#2-explore-tab-navigators) yesterday. To get more familiar with them, you can go back to the lab materials at a later time!
+💡 So just as a recap, we talked through [drawer navigators](https://github.com/Snap-Engineering-Academy-2022/chapsnat_2022/tree/main#1-explore-drawer-navigators) and [tab navigators](https://github.com/Snap-Engineering-Academy-2022/chapsnat_2022/tree/main#2-explore-tab-navigators). To get more familiar with them, you can go back to the lab materials at a later time!
 
 ## 0. Before we start, update your code.
 
