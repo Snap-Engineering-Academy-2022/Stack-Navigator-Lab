@@ -11,7 +11,7 @@ Update your `firebase.js`  file to look like this:
 
 ```jsx
 
-// Your web app's Firebase configuration, which you copy-pasted from Step 6
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC7CQwBSzjC_tlEiMd2Mc8Sh9Fb_Cwc1p8",
   authDomain: "chapsnat-3f4f7.firebaseapp.com",
