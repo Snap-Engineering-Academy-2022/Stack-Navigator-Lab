@@ -76,13 +76,6 @@ export default App;
 </details>
 
 
-If you want to open up our class Firebase in the console, 
-
-```jsx
-Username: chapsnatsea@gmail.com
-Password: snapacademies
-```
-
 ## 1. In your groups, explore stack navigators.
 
 [StackNavigator](https://snack.expo.io/@jennyhansolo/stacknavigator)
