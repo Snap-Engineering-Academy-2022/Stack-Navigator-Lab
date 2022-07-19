@@ -227,7 +227,7 @@ export default App;
 </details>
 
 <details>
-<summary> screens/ChatScreen.js`</summary>
+<summary> screens/ChatScreen.js</summary>
     
 ```jsx
 import React, { useState, useCallback, useEffect } from "react";
@@ -284,34 +284,14 @@ import { FlatList, Text, View, TouchableOpacity, StyleSheet } from "react-native
 import db from "./firebase";
 
 export default function HomeScreen({ navigation }) {
-  const [chatList, setChatList] = useState([]);
-
-  useEffect(() => {
-    let chatsRef = db.collection("Chats");
-    chatsRef.get().then((querySnapshot) => {
-      let newChatList = [];
-      querySnapshot.forEach((doc) => {
-        let newChat = { ...doc.data() };
-        newChat.id = doc.id;
-        newChatList.push(newChat);
-        console.log(newChatList);
-      });
-      setChatList(newChatList);
-    });
-  }, []);
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={chatList}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Chat")}
-          >
-            <Text style={styles.item}>{item.id}</Text>
+	  <TouchableOpacity
+	    onPress={() => navigation.navigate("Chat")}
+	  >
+          	<Text style={styles.item}>{item.id}</Text>
           </TouchableOpacity>
-        )}
-      />
     </View>
   );
 }
@@ -331,115 +311,7 @@ const styles = StyleSheet.create({
 </details>
     
 
-### **c. When you run this code, there are 5 action items to be addressed!  🐛🐛🐛**
 
-<details>
-<summary> 🐛 #1: Bug – "Module can't be found"</summary>
+### c. Commit and push what you have to your own repo.
 
-  - In both `HomeScreen.js` and `ChatScreen.js`, we need to change the import statement `import db from "./firebase";` slightly because we nested these files inside a folder. Can you figure out how?
-      
-      ![https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9d570319-550b-43ee-bd18-929a071aa32b%2FUntitled.png?table=block&id=9c197f95-f95b-4bcb-ba80-a61507fb4830&spaceId=60b48455-9d72-4c97-9b1e-b7a326792bdf&width=1060&userId=b8cc0f5a-88d2-42e5-8739-9f94ccd628a6&cache=v2](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9d570319-550b-43ee-bd18-929a071aa32b%2FUntitled.png?table=block&id=9c197f95-f95b-4bcb-ba80-a61507fb4830&spaceId=60b48455-9d72-4c97-9b1e-b7a326792bdf&width=1060&userId=b8cc0f5a-88d2-42e5-8739-9f94ccd628a6&cache=v2)
-      
-      - Solution to check
-          
-          `import db from "../firebase";`
-</details>
-          
-<details>
-<summary>👀 #2: Reading Code – Chat Collection Query Snapshot</summary>
-    
-What is this `useEffect` doing? It's being called right as your screen loads. 
-
-- 💪**Go through each line of this function with your partners and make sure you understand what is going on! ⁉️If you get stuck, ask a teaching team member to join you.⁉️**
-    - Some references you might find helpful:
-        - [https://firebase.google.com/docs/firestore/query-data/queries](https://firebase.google.com/docs/firestore/query-data/queries)
-        - [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-        - [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-
-```jsx
-useEffect(() => {
-  let chatsRef = db.collection("Chats");
-  chatsRef.get().then((querySnapshot) => {
-    let newChatList = [];
-    querySnapshot.forEach((doc) => {
-      let newChat = { ...doc.data() };
-      newChat.id = doc.id;
-      newChatList.push(newChat);
-      console.log(newChatList);
-    });
-    setChatList(newChatList);
-  });
-}, []);
-```
-</details>
-    
-<details>
-<summary>👀 #3: Reading Code – < FlatList ></summary>
-    
-```jsx
-<FlatList
-  data={chatList}
-  renderItem={({ item }) => (
-    <TouchableOpacity
-      onPress={() => navigation.navigate("Chat")}
-    >
-      <Text style={styles.item}>{item.id}</Text>
-    </TouchableOpacity>
-  )}
-/>
-```
-
-As you learned in part 4, `chatList` is a state variable that contains a list of chats! 
-
-- We want to display these as a clickable list on the screen... but the `<ul>`  and `<ol>` elements don't exist on mobile, they only exist as web components!
-- Do not fear! `<FlatList>` is here to save the day.
-- 💪**Check out the documentation for <FlatList> [here](https://reactnative.dev/docs/flatlist). Then discuss with your partners:**
-    - **What does the `data` prop take in as input?**
-    - **What does the `renderItem` prop take in as input?**
-- Add styling to the TouchableOpacity within the FlatList to give some styles to the list!
-</details>
-
-<details>
-<summary>🐛 #4: Bug – ChatScreen is hard-coded and only loads messages from `myfirstchat` even if you click on `SEA Group Chat`!</summary>
-
-- Using what you learned about `route.params` earlier (and this document about [https://reactnavigation.org/docs/params](https://reactnavigation.org/docs/params)!), can you change `HomeScreen.js` and `ChatScreen.js` so you pass in a chat id to `ChatScreen.js`
-- Remember, you can use `route.params`, which are kind of like props but passed in with Navigation specifically.
-    
-    ```jsx
-    navigation.navigate('RouteName', { /* params go here */ })
-    
-    //Example: 
-    navigation.navigate('Chat', {chatname: item.id});
-    ```
-    
-- Start with line 34/28 on `HomeScreen.js`
-- When you go to a specific screen, you can access the Navigation Props under the `route` object:
-    
-    ```jsx
-    //Example
-    function RouteName({ route, navigation }){
-      const { myParam } = route.params;
-    }
-    ```
-    
-- Then edit line 6, 12, and 25 of `ChatScreen.js`
-- Solution to check
-    
-    Your completed code should look like this: 
-    
-    [https://github.com/Snap-Engineering-Academy-2021/chapsnat/blob/nav/screens/HomeScreen.js](https://github.com/Snap-Engineering-Academy-2021/chapsnat/blob/nav/screens/HomeScreen.js)
-    
-    [https://github.com/Snap-Engineering-Academy-2021/chapsnat/blob/nav/screens/ChatScreen.js](https://github.com/Snap-Engineering-Academy-2021/chapsnat/blob/nav/screens/ChatScreen.js)
-</details>
-            
-<details>
-<summary>🐛 #5: Bug – Invalid Date</summary>
-
-  - We'll address this as a whole class. You can skip this for now!
-      
-      ![https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F72651bf4-2da7-4d30-ba99-b014eab8a73d%2FUntitled.png?table=block&id=0e4ceb08-8866-41c5-9518-821245c029df&spaceId=60b48455-9d72-4c97-9b1e-b7a326792bdf&width=1180&userId=b8cc0f5a-88d2-42e5-8739-9f94ccd628a6&cache=v2](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F72651bf4-2da7-4d30-ba99-b014eab8a73d%2FUntitled.png?table=block&id=0e4ceb08-8866-41c5-9518-821245c029df&spaceId=60b48455-9d72-4c97-9b1e-b7a326792bdf&width=1180&userId=b8cc0f5a-88d2-42e5-8739-9f94ccd628a6&cache=v2)
-</details>
-
-### d. Commit and push what you have to your own repo.
-
-### e. Finished early? Add styling to the HomeScreen so it looks like the Snapchat Chat List screen!
+### d. Finished early? Add styling to the HomeScreen so it looks like the Snapchat Chat List screen!
